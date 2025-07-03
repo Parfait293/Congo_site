@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>65ème Anniversaire de l'Indépendance du Congo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'congo-green': '#009543',
+                        'congo-yellow': '#FBDE4A',
+                        'congo-red': '#DC241F',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), url('https://images.unsplash.com/photo-1508317469940-e3de49ba902e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .activity-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .admin-panel {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .flag-pattern {
+            background: repeating-linear-gradient(
+                0deg,
+                #009543,
+                #009543 20px,
+                #FBDE4A 20px,
+                #FBDE4A 40px
+            );
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-congo-green shadow-lg py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <div class="bg-congo-red rounded-full w-8 h-8"></div>
+                </div>
+                <span class="text-white text-xl font-bold">65ÈME ANNIVERSAIRE</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#accueil" class="text-white hover:text-congo-yellow font-medium">Accueil</a>
+                <a href="#activites" class="text-white hover:text-congo-yellow font-medium">Activités</a>
+                <a href="#objectifs" class="text-white hover:text-congo-yellow font-medium">Objectifs</a>
+                <a href="#inscription" class="text-white hover:text-congo-yellow font-medium">Inscription</a>
+                <a href="#contact" class="text-white hover:text-congo-yellow font-medium">Contact</a>
+                <button onclick="openAdminPanel()" class="bg-congo-yellow text-congo-green font-bold py-2 px-4 rounded-lg hover:bg-yellow-400 transition">Admin</button>
+            </div>
+            
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-section pt-24 pb-32 flex items-center justify-center">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                65ÈME ANNIVERSAIRE DE L'INDÉPENDANCE DU CONGO
+            </h1>
+            <p class="text-xl md:text-2xl text-congo-yellow mb-8">
+                "Célébrer ensemble, avancer ensemble"
+            </p>
+            <p class="text-white text-lg mb-10">
+                Du 12 au 15 août 2025 • Place Bicentenaire, Cotonou, Bénin
+            </p>
+            
+            <!-- Countdown -->
+            <div class="flex justify-center space-x-4 mb-12">
+                <div class="countdown-item flex flex-col items-center justify-center w-20 h-20 rounded-lg">
+                    <span id="days" class="text-white text-2xl font-bold">00</span>
+                    <span class="text-congo-yellow text-sm">Jours</span>
+                </div>
+                <div class="countdown-item flex flex-col items-center justify-center w-20 h-20 rounded-lg">
+                    <span id="hours" class="text-white text-2xl font-bold">00</span>
+                    <span class="text-congo-yellow text-sm">Heures</span>
+                </div>
+                <div class="countdown-item flex flex-col items-center justify-center w-20 h-20 rounded-lg">
+                    <span id="minutes" class="text-white text-2xl font-bold">00</span>
+                    <span class="text-congo-yellow text-sm">Minutes</span>
+                </div>
+                <div class="countdown-item flex flex-col items-center justify-center w-20 h-20 rounded-lg">
+                    <span id="seconds" class="text-white text-2xl font-bold">00</span>
+                    <span class="text-congo-yellow text-sm">Secondes</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#inscription" class="bg-congo-yellow hover:bg-yellow-400 text-congo-green font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+                    S'inscrire maintenant
+                </a>
+                <a href="#activites" class="bg-transparent border-2 border-white hover:bg-white hover:text-congo-green text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+                    Voir les activités
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Event -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-congo-green mb-4">
+                    Célébration du 65ème Anniversaire
+                </h2>
+                <div class="w-24 h-1 bg-congo-yellow mx-auto mb-6"></div>
+                <p class="text-gray-700 text-lg">
+                    La fête de l'indépendance de la République du Congo constitue un événement majeur pour la communauté congolaise vivant à l'étranger, et plus particulièrement au Bénin, où les liens entre les deux pays sont forts et en constante évolution.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-congo-green mb-4">Objectifs de l'Événement</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="bg-congo-green rounded-full p-1 mt-1 mr-3">
+                                <div class="bg-congo-yellow w-2 h-2 rounded-full"></div>
+                            </div>
+                            <p class="text-gray-700">Célébrer l'indépendance de la République du Congo</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-congo-green rounded-full p-1 mt-1 mr-3">
+                                <div class="bg-congo-yellow w-2 h-2 rounded-full"></div>
+                            </div>
+                            <p class="text-gray-700">Renforcer les liens entre le Congo et le Bénin</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-congo-green rounded-full p-1 mt-1 mr-3">
+                                <div class="bg-congo-yellow w-2 h-2 rounded-full"></div>
+                            </div>
+                            <p class="text-gray-700">Promouvoir la culture congolaise au Bénin</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-congo-green rounded-full p-1 mt-1 mr-3">
+                                <div class="bg-congo-yellow w-2 h-2 rounded-full"></div>
+                            </div>
+                            <p class="text-gray-700">Favoriser la coopération inter-communautaire</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-congo-green rounded-full p-1 mt-1 mr-3">
+                                <div class="bg-congo-yellow w-2 h-2 rounded-full"></div>
+                            </div>
+                            <p class="text-gray-700">Encourager l'entrepreneuriat et l'innovation</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-200 border-2 border-dashed rounded-xl w-full h-80 flex items-center justify-center">
+                    <span class="text-gray-500">Image de la célébration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities -->
+    <section id="activites" class="py-20 bg-congo-green bg-opacity-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-congo-green mb-4">
+                    Activités Principales
+                </h2>
+                <div class="w-24 h-1 bg-congo-yellow mx-auto mb-6"></div>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    Découvrez le programme complet des célébrations du 65ème anniversaire de l'indépendance de la République du Congo
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Activity 1 -->
+                <div class="activity-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-congo-green text-white font-bold text-lg w-10 h-10 rounded-full flex items-center justify-center mr-3">1</div>
+                            <h3 class="text-xl font-bold text-congo-green">Culte d'Action de Grâces</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2"><i class="fas fa-calendar-alt mr-2"></i>12 août 2025, 19h</p>
+                        <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Place Bicentenaire</p>
+                        <p class="text-gray-700 mb-4">
+                            Moment spirituel pour rendre grâce à Dieu pour l'indépendance, avec louanges, témoignages et message spirituel.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Louanges et Adoration
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Témoignages de reconnaissance
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Message spirituel
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Activity 2 -->
+                <div class="activity-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-congo-green text-white font-bold text-lg w-10 h-10 rounded-full flex items-center justify-center mr-3">2</div>
+                            <h3 class="text-xl font-bold text-congo-green">Festival Culturel Congolais</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2"><i class="fas fa-calendar-alt mr-2"></i>13-15 août 2025</p>
+                        <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Place Bicentenaire</p>
+                        <p class="text-gray-700 mb-4">
+                            Mise en valeur de la culture congolaise à travers des expositions, performances, et activités diverses.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Expositions d'art et d'artisanat
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Concours de danse et musique
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Projections de films
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Campagne de don de sang
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Activity 3 -->
+                <div class="activity-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-congo-green text-white font-bold text-lg w-10 h-10 rounded-full flex items-center justify-center mr-3">3</div>
+                            <h3 class="text-xl font-bold text-congo-green">Journée de Salubrité</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2"><i class="fas fa-calendar-alt mr-2"></i>14 août 2025</p>
+                        <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Cotonou</p>
+                        <p class="text-gray-700 mb-4">
+                            Action citoyenne pour promouvoir l'hygiène et la propreté en collaboration avec la SGDS SA.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Nettoyage communautaire
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Sensibilisation à l'hygiène
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Activity 4 -->
+                <div class="activity-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-congo-green text-white font-bold text-lg w-10 h-10 rounded-full flex items-center justify-center mr-3">4</div>
+                            <h3 class="text-xl font-bold text-congo-green">Prix d'Excellence et de Solidarité</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2"><i class="fas fa-calendar-alt mr-2"></i>15 août 2025</p>
+                        <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Place Bicentenaire</p>
+                        <p class="text-gray-700 mb-4">
+                            Soutien à l'entrepreneuriat et reconnaissance de l'excellence académique.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Présentation de projets innovants
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Mentorat et financement
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Célébration de l'excellence académique
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Cérémonie de remise des prix
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Activity 5 -->
+                <div class="activity-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-congo-green text-white font-bold text-lg w-10 h-10 rounded-full flex items-center justify-center mr-3">5</div>
+                            <h3 class="text-xl font-bold text-congo-green">Rencontres Sportives</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2"><i class="fas fa-calendar-alt mr-2"></i>15 août 2025</p>
+                        <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Place Bicentenaire</p>
+                        <p class="text-gray-700 mb-4">
+                            Compétitions sportives pour promouvoir la santé, l'esprit d'équipe et l'unité.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Tournois de football
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Jeux traditionnels
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Démonstrations sportives
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Remise des médailles
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Activity 6 -->
+                <div class="activity-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-congo-green text-white font-bold text-lg w-10 h-10 rounded-full flex items-center justify-center mr-3">6</div>
+                            <h3 class="text-xl font-bold text-congo-green">Soirée de Gala Officielle</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2"><i class="fas fa-calendar-alt mr-2"></i>15 août 2025, 19h</p>
+                        <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>MAJESTIC de Cadjèhoun</p>
+                        <p class="text-gray-700 mb-4">
+                            Dîner prestigieux réunissant les autorités béninoises et congolaises.
+                        </p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Discours officiels
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Réseautage diplomatique
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Dîner gastronomique
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-congo-yellow mt-1 mr-2"></i>
+                                Performances culturelles
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="inscription" class="py-20 bg-congo-green">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-congo-green py-8 px-6 text-center">
+                    <h2 class="text-3xl font-bold text-white">Inscription à l'Événement</h2>
+                    <p class="text-congo-yellow mt-2">
+                        Remplissez le formulaire ci-dessous pour participer aux célébrations
+                    </p>
+                </div>
+                
+                <form id="registrationForm" class="p-6 md:p-10">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="fullName" class="block text-gray-700 font-medium mb-2">
+                                Nom Complet <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">
+                                Adresse Email <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">
+                                Numéro de Téléphone <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="nationality" class="block text-gray-700 font-medium mb-2">
+                                Nationalité <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="nationality"
+                                name="nationality"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="occupation" class="block text-gray-700 font-medium mb-2">
+                                Profession <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="occupation"
+                                name="occupation"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="organization" class="block text-gray-700 font-medium mb-2">
+                                Organisation
+                            </label>
+                            <input
+                                type="text"
+                                id="organization"
+                                name="organization"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-congo-green mb-4">
+                            Activités auxquelles vous souhaitez participer
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-start">
+                                <input
+                                    type="checkbox"
+                                    id="activity1"
+                                    name="events"
+                                    value="Culte d'Action de Grâces"
+                                    class="mt-1 mr-3 h-5 w-5 text-congo-green rounded focus:ring-congo-green"
+                                >
+                                <label for="activity1" class="text-gray-700">
+                                    Culte d'Action de Grâces
+                                </label>
+                            </div>
+                            <div class="flex items-start">
+                                <input
+                                    type="checkbox"
+                                    id="activity2"
+                                    name="events"
+                                    value="Festival Culturel Congolais"
+                                    class="mt-1 mr-3 h-5 w-5 text-congo-green rounded focus:ring-congo-green"
+                                >
+                                <label for="activity2" class="text-gray-700">
+                                    Festival Culturel Congolais
+                                </label>
+                            </div>
+                            <div class="flex items-start">
+                                <input
+                                    type="checkbox"
+                                    id="activity3"
+                                    name="events"
+                                    value="Journée de Salubrité"
+                                    class="mt-1 mr-3 h-5 w-5 text-congo-green rounded focus:ring-congo-green"
+                                >
+                                <label for="activity3" class="text-gray-700">
+                                    Journée de Salubrité
+                                </label>
+                            </div>
+                            <div class="flex items-start">
+                                <input
+                                    type="checkbox"
+                                    id="activity4"
+                                    name="events"
+                                    value="Prix d'Excellence et de Solidarité"
+                                    class="mt-1 mr-3 h-5 w-5 text-congo-green rounded focus:ring-congo-green"
+                                >
+                                <label for="activity4" class="text-gray-700">
+                                    Prix d'Excellence et de Solidarité
+                                </label>
+                            </div>
+                            <div class="flex items-start">
+                                <input
+                                    type="checkbox"
+                                    id="activity5"
+                                    name="events"
+                                    value="Rencontres Sportives"
+                                    class="mt-1 mr-3 h-5 w-5 text-congo-green rounded focus:ring-congo-green"
+                                >
+                                <label for="activity5" class="text-gray-700">
+                                    Rencontres Sportives
+                                </label>
+                            </div>
+                            <div class="flex items-start">
+                                <input
+                                    type="checkbox"
+                                    id="activity6"
+                                    name="events"
+                                    value="Soirée de Gala Officielle"
+                                    class="mt-1 mr-3 h-5 w-5 text-congo-green rounded focus:ring-congo-green"
+                                >
+                                <label for="activity6" class="text-gray-700">
+                                    Soirée de Gala Officielle
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button
+                            type="submit"
+                            class="w-full md:w-auto bg-congo-green hover:bg-green-800 text-white font-bold py-4 px-12 rounded-lg transition duration-300"
+                        >
+                            Soumettre l'inscription
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-congo-green mb-4">
+                    Contactez-nous
+                </h2>
+                <div class="w-24 h-1 bg-congo-yellow mx-auto mb-6"></div>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    Pour toute question ou information supplémentaire sur l'événement
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-xl font-bold text-congo-green mb-6">Coordonnées</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-congo-green text-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Adresse</h4>
+                                <p class="text-gray-600">
+                                    Consulat Honoraire de la République du Congo au Bénin<br>
+                                    Cotonou, Bénin
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-congo-green text-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Téléphone</h4>
+                                <p class="text-gray-600">+229 21 30 45 67</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-congo-green text-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">contact@65independancecongo.bj</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-congo-green mb-6">Envoyez-nous un message</h3>
+                    
+                    <form class="space-y-4">
+                        <div>
+                            <label for="contactName" class="block text-gray-700 font-medium mb-2">Nom Complet</label>
+                            <input 
+                                type="text" 
+                                id="contactName" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="contactEmail" class="block text-gray-700 font-medium mb-2">Adresse Email</label>
+                            <input 
+                                type="email" 
+                                id="contactEmail" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="contactMessage" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea 
+                                id="contactMessage" 
+                                rows="4" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            ></textarea>
+                        </div>
+                        
+                        <button 
+                            type="submit"
+                            class="bg-congo-green hover:bg-green-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+                        >
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="flag-pattern py-12 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <div class="bg-congo-red rounded-full w-8 h-8"></div>
+                        </div>
+                        <h3 class="text-xl font-bold">65ÈME ANNIVERSAIRE</h3>
+                    </div>
+                    <p class="mb-6">
+                        Célébration du 65ème anniversaire de l'indépendance de la République du Congo au Bénin, du 12 au 15 août 2025.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-white bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Liens rapides</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#accueil" class="hover:text-congo-yellow transition">Accueil</a></li>
+                        <li><a href="#activites" class="hover:text-congo-yellow transition">Activités</a></li>
+                        <li><a href="#objectifs" class="hover:text-congo-yellow transition">Objectifs</a></li>
+                        <li><a href="#inscription" class="hover:text-congo-yellow transition">Inscription</a></li>
+                        <li><a href="#contact" class="hover:text-congo-yellow transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>Consulat du Congo, Cotonou, Bénin</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mt-1 mr-3"></i>
+                            <span>+229 21 30 45 67</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <span>contact@65independancecongo.bj</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white border-opacity-20 mt-12 pt-8 text-center text-sm">
+                <p>© 2025 65ème Anniversaire de l'Indépendance du Congo. Tous droits réservés.</p>
+                <p class="mt-2">Conçu par le Comité d'Organisation</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Overlay -->
+    <div id="adminPanel" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl admin-panel">
+                <div class="bg-congo-green text-white p-6 rounded-t-xl flex justify-between items-center">
+                    <h3 class="text-xl font-bold">Administration</h3>
+                    <button onclick="closeAdminPanel()" class="text-white hover:text-congo-yellow">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="p-6">
+                    <!-- Admin Login Form -->
+                    <div id="loginForm">
+                        <h4 class="text-lg font-bold text-congo-green mb-6">Connexion Administrateur</h4>
+                        <div class="mb-6">
+                            <label for="adminUsername" class="block text-gray-700 font-medium mb-2">Nom d'utilisateur</label>
+                            <input 
+                                type="text" 
+                                id="adminUsername" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        <div class="mb-6">
+                            <label for="adminPassword" class="block text-gray-700 font-medium mb-2">Mot de passe</label>
+                            <input 
+                                type="password" 
+                                id="adminPassword" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                        </div>
+                        <button 
+                            onclick="loginAdmin()"
+                            class="w-full bg-congo-green hover:bg-green-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+                        >
+                            Se connecter
+                        </button>
+                    </div>
+                    
+                    <!-- Admin Dashboard -->
+                    <div id="adminDashboard" class="hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="text-lg font-bold text-congo-green">Gestion des inscriptions</h4>
+                            <button 
+                                onclick="exportToCSV()"
+                                class="bg-congo-green hover:bg-green-800 text-white font-medium py-2 px-4 rounded-lg transition duration-300"
+                            >
+                                Exporter en CSV
+                            </button>
+                        </div>
+                        
+                        <div class="relative mb-6">
+                            <input
+                                type="text"
+                                id="searchRegistrations"
+                                placeholder="Rechercher des inscriptions..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-congo-green focus:border-transparent"
+                            >
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="py-3 px-4 text-left text-gray-700 font-semibold">Nom</th>
+                                        <th class="py-3 px-4 text-left text-gray-700 font-semibold">Email</th>
+                                        <th class="py-3 px-4 text-left text-gray-700 font-semibold">Téléphone</th>
+                                        <th class="py-3 px-4 text-left text-gray-700 font-semibold">Activités</th>
+                                        <th class="py-3 px-4 text-left text-gray-700 font-semibold">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="registrationsTableBody">
+                                    <!-- Registrations will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <button 
+                                onclick="logoutAdmin()"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition duration-300"
+                            >
+                                Déconnexion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-green-600 text-4xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-congo-green mb-4">Inscription Confirmée!</h2>
+            <p class="text-gray-700 mb-6">
+                Merci pour votre inscription. Nous avons bien reçu vos informations et vous contacterons bientôt avec plus de détails sur l'événement.
+            </p>
+            <button 
+                onclick="closeConfirmationModal()"
+                class="inline-block bg-congo-green hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+            >
+                Retour à l'accueil
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('2025-08-12');
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Registration Form Handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                nationality: document.getElementById('nationality').value,
+                occupation: document.getElementById('occupation').value,
+                organization: document.getElementById('organization').value,
+                events: Array.from(document.querySelectorAll('input[name="events"]:checked')).map(cb => cb.value),
+                timestamp: new Date().toISOString()
+            };
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll store in localStorage
+            let registrations = JSON.parse(localStorage.getItem('registrations') || '[]');
+            registrations.push(formData);
+            localStorage.setItem('registrations', JSON.stringify(registrations));
+            
+            // Show confirmation
+            document.getElementById('confirmationModal').classList.remove('hidden');
+            document.getElementById('confirmationModal').classList.add('flex');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Admin Panel Functions
+        function openAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('hidden');
+        }
+        
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+        }
+        
+        function loginAdmin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            // Simple admin authentication (in real app, use secure authentication)
+            if (username === 'admin' && password === 'congo2025') {
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                loadRegistrations();
+            } else {
+                alert('Identifiants incorrects');
+            }
+        }
+        
+        function logoutAdmin() {
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+        }
+        
+        function loadRegistrations() {
+            const registrations = JSON.parse(localStorage.getItem('registrations') || '[]');
+            const tableBody = document.getElementById('registrationsTableBody');
+            tableBody.innerHTML = '';
+            
+            if (registrations.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="py-8 px-4 text-center text-gray-500">
+                            Aucune inscription trouvée
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            registrations.forEach((reg, index) => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-200 hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="py-3 px-4">${reg.fullName}</td>
+                    <td class="py-3 px-4">${reg.email}</td>
+                    <td class="py-3 px-4">${reg.phone}</td>
+                    <td class="py-3 px-4">
+                        <div class="flex flex-wrap gap-1">
+                            ${reg.events.map(event => `
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
+                                    ${event}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </td>
+                    <td class="py-3 px-4">
+                        <button onclick="deleteRegistration(${index})" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function deleteRegistration(index) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cette inscription ?')) {
+                let registrations = JSON.parse(localStorage.getItem('registrations') || '[]');
+                registrations.splice(index, 1);
+                localStorage.setItem('registrations', JSON.stringify(registrations));
+                loadRegistrations();
+            }
+        }
+        
+        function exportToCSV() {
+            const registrations = JSON.parse(localStorage.getItem('registrations') || '[]');
+            
+            if (registrations.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            const headers = ['Nom', 'Email', 'Téléphone', 'Nationalité', 'Profession', 'Organisation', 'Activités', 'Date'];
+            const csvContent = [
+                headers.join(','),
+                ...registrations.map(reg => [
+                    `"${reg.fullName}"`,
+                    `"${reg.email}"`,
+                    `"${reg.phone}"`,
+                    `"${reg.nationality}"`,
+                    `"${reg.occupation}"`,
+                    `"${reg.organization || ''}"`,
+                    `"${reg.events.join(', ')}"`,
+                    new Date(reg.timestamp).toLocaleDateString()
+                ].join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'inscriptions_65e_anniversaire.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function closeConfirmationModal() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+            document.getElementById('confirmationModal').classList.remove('flex');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Initialize search functionality
+        document.getElementById('searchRegistrations').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#registrationsTableBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
