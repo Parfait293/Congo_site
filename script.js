@@ -56,7 +56,7 @@ function loginAdmin() {
     const username = document.getElementById('adminUsername').value;
     const password = document.getElementById('adminPassword').value;
     
-    if (username === 'admin' && password === 'congo2025') {
+    if (username === '' && password === '') {
         document.getElementById('loginForm').style.display = 'none';
         document.getElementById('adminDashboard').style.display = 'block';
         loadRegistrations();
